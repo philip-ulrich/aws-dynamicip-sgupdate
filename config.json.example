@@ -1,0 +1,8 @@
+{
+    "hostnames": [
+        "mydomain.com"    
+    ],
+    "rules": [
+        {"sgid": "sg-123abc1a", "fromport": 1, "proto": "tcp", "toport": 1, "direction": "ingress"}
+    ]
+}
