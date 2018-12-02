@@ -43,38 +43,14 @@ def AddRule(sgid,ip,version,fromport,toport,proto,direction):
     security_group = ec2.SecurityGroup('sgid')
     if direction == 'ingress':
         if version == 'ipv4':
-            response = security_group.authorize_ingress(
-                CidrIp=ip+'/32',
-                FromPort=fromport,
-                GroupId=sgid,
-                IpProtocol= proto,
-                ToPort=toport,
-            )
+            response = security_group.authorize_ingress(CidrIp=ip+'/32', FromPort=fromport, GroupId=sgid, IpProtocol=proto, ToPort=toport)
         if version == 'ipv6':
-            response = security_group.authorize_ingress(
-                CidrIpv6=ip,
-                FromPort=fromport,
-                GroupId=sgid,
-                IpProtocol= proto,
-                ToPort=toport,
-            )
+            response = security_group.authorize_ingress(CidrIpv6=ip, FromPort=fromport, GroupId=sgid, IpProtocol=proto, ToPort=toport)
     if direction == 'egress':
         if version == 'ipv4':
-            response = security_group.authorize_egress(
-                CidrIp=ip+'/32',
-                FromPort=fromport,
-                GroupId=sgid,
-                IpProtocol= proto,
-                ToPort=toport,
-            )
+            response = security_group.authorize_egress(CidrIp=ip+'/32', FromPort=fromport, GroupId=sgid, IpProtocol=proto, ToPort=toport)
         if version == 'ipv6':
-            response = security_group.authorize_egress(
-                CidrIpv6=ip,
-                FromPort=fromport,
-                GroupId=sgid,
-                IpProtocol= proto,
-                ToPort=toport,
-            )
+            response = security_group.authorize_egress(CidrIpv6=ip, FromPort=fromport, GroupId=sgid, IpProtocol=proto, ToPort=toport)
             
 def main():
     ipv4, ipv6 = ResolveIP(config['hostnames'],'ipv4'), ResolveIP(config['hostnames'],'ipv6')
